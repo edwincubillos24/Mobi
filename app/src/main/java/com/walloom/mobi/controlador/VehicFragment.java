@@ -12,13 +12,14 @@ import android.view.ViewGroup;
 
 import com.walloom.mobi.R;
 
+
 /**
  * A simple {@link Fragment} subclass.
  */
-public class PrimerFragment extends Fragment {
+public class VehicFragment extends Fragment {
 
 
-    public PrimerFragment() {
+    public VehicFragment() {
         // Required empty public constructor
     }
 
@@ -27,13 +28,13 @@ public class PrimerFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view =  inflater.inflate(R.layout.fragment_primer, container, false);
+        View view =  inflater.inflate(R.layout.fragment_vehic, container, false);
         FloatingActionButton fab = (FloatingActionButton) view.findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getContext(), Main2Activity.class);
-                intent.putExtra("direccion","gastos");
+                intent.putExtra("direccion","vehiculo");
                 startActivity(intent);
 
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)

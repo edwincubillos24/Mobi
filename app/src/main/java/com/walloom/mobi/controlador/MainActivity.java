@@ -1,5 +1,6 @@
 package com.walloom.mobi.controlador;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -7,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -18,10 +20,15 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 
+import com.walloom.mobi.NuevoGastoFragment;
+import com.walloom.mobi.NuevoVehicFragment;
 import com.walloom.mobi.R;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    private String cadena;
+    private int band=2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,15 +36,6 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -49,15 +47,39 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
     //    FrameLayout contenedor = (FrameLayout) findViewById(R.id.contenedor);
-
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
-        MainFragment mainFragment = new MainFragment();
-        ft.add(R.id.contenedor, mainFragment).commit();
 
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            cadena = extras.getString("direccion");
+            Log.d("cadenaMA",cadena);
+            if (cadena.equals("gastos")) {
+                MainFragment frag = new MainFragment();
+                ft.add(R.id.contenedor, frag).commit();
+            }
+            if (cadena.equals("vehiculo")) {
+                VehicFragment frag = new VehicFragment();
+                ft.add(R.id.contenedor, frag).commit();
+            }
+        }else {
+            Log.d("cadena","no hay");
+            MainFragment frag = new MainFragment();
+            ft.add(R.id.contenedor, frag).commit();
+        }
     }
 
+    @Override
+    protected void onDestroy() {
+        Log.d("destruida","se destruye a actividad 1");
+        super.onDestroy();
+    }
 
+    @Override
+    protected void onStop() {
+        Log.d("destruida","se stop a actividad 1");
+        super.onStop();
+    }
 
     @Override
     public void onBackPressed() {
@@ -96,10 +118,22 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
 
         if (id == R.id.nav_camera) {
-            // Handle the camera action
+            if (band!=1) {
+                VehicFragment frag = new VehicFragment();
+                ft.replace(R.id.contenedor, frag).commit();
+                band=1;
+            }
+
         } else if (id == R.id.nav_gallery) {
+            if(band!=2) {
+                MainFragment frag = new MainFragment();
+                ft.replace(R.id.contenedor, frag).commit();
+                band=2;
+            }
 
         } else if (id == R.id.nav_slideshow) {
 

@@ -1,7 +1,10 @@
 package com.walloom.mobi.controlador;
 
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -32,20 +35,17 @@ public class MainFragment extends Fragment {
 
         TabLayout tabLayout =  (TabLayout) view.findViewById(R.id.tabs);
 
-
         ViewPager viewPager = (ViewPager) view.findViewById(R.id.pager);
         PagerAdapter adapter = new PagerAdapter(getFragmentManager());
         viewPager.setAdapter(adapter);
 
         tabLayout.setupWithViewPager(viewPager);
+
+
         return view;
-
-
     }
 
     public class PagerAdapter extends FragmentPagerAdapter {
-
-
 
         public PagerAdapter(FragmentManager fm) {
             super(fm);
@@ -78,5 +78,7 @@ public class MainFragment extends Fragment {
             return super.getPageTitle(position);
         }
     }
+
+
 
 }

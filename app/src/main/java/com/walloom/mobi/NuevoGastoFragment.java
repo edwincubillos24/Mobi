@@ -1,24 +1,20 @@
-package com.walloom.mobi.controlador;
+package com.walloom.mobi;
 
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.walloom.mobi.R;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class SegundoFragment extends Fragment {
+public class NuevoGastoFragment extends Fragment {
 
 
-    public SegundoFragment() {
+    public NuevoGastoFragment() {
         // Required empty public constructor
     }
 
@@ -27,9 +23,7 @@ public class SegundoFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_segundo, container, false);
-
-        return view;
+        return inflater.inflate(R.layout.fragment_nuevo_gasto, container, false);
     }
 
 }

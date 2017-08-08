@@ -3,13 +3,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context="com.walloom.mobi.controlador.PrimerFragment">
+    tools:context="com.walloom.mobi.controlador.VehicFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/Primer" />
+        android:text="VEHICULO FRAGMENT" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
